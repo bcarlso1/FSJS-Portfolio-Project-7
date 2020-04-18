@@ -4,7 +4,7 @@ import './App.css';
 import Search from './Search';
 import Nav from './Nav';
 import PhotoContainer from './PhotoContainer';
-// import apiKey from './config';
+import apiKey from './config';
 // import { BrowserRouter, Route, Link } from 'react-router-dom';
 
 
@@ -19,11 +19,11 @@ import PhotoContainer from './PhotoContainer';
   }
 
   componentDidMount() {
-      fetch('http://api.giphy.com/v1/gifs/search?q=${query}&limit=24&api_key=dc6zaTOxFJmzC')
-      // <apiKey />)
-      .then(response => response.json())
+    console.log({apiKey});  
+    fetch(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=mountains&per_page=24&format=json&nojsoncallback=1`)
+      // .then(response => response.json())
       .then(responseData => {
-        this.setState({ pics: responseData.data })
+        this.setState({ pics: responseData})
       })
       .catch(error => {
         console.log('Error fetching', error);
