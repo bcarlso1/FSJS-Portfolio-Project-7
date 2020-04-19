@@ -7,7 +7,7 @@ const PhotoContainer = props => {
 
     const results = props.data;
     let pics = results.map(pic =>
-      <Photo url={pic.images.fixed_height_small.url} key={pic.id} />
+      <Photo url={`https://farm${pic.farm}.staticflickr.com/${pic.server}/${pic.id}_${pic.secret}.jpg`} key={pic.id} />
       );
     
     return (
