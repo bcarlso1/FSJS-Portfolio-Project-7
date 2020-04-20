@@ -6,9 +6,14 @@ import Photo from './Photo';
 const PhotoContainer = props => {
 
     const results = props.data;
-    let pics = results.map(pic =>
-      <Photo url={`https://farm${pic.farm}.staticflickr.com/${pic.server}/${pic.id}_${pic.secret}.jpg`} key={pic.id} />
-      );
+    
+    let pics;
+    if (results.length > 0) {
+      pics = results.map(pic => <Photo url={`https://farm${pic.farm}.staticflickr.com/${pic.server}/${pic.id}_${pic.secret}.jpg`} key={pic.id} />);
+    } else {
+      pics = <NotFound />;
+    }
+  
     
     return (
         <div class="photo-container">
@@ -16,7 +21,6 @@ const PhotoContainer = props => {
         <ul>
           {pics}
         </ul>
-        <NotFound />
       </div>
     );
    
