@@ -2,28 +2,29 @@ import React, { Component } from 'react';
 import apiKey from './config';
 import PhotoContainer from './PhotoContainer.js';
 
-
-export default class Home extends Component {
+export default class Mountain extends Component {
     
     constructor() {
       super();
       this.state = {
         pics: [],
-        loading: true
+        loading: true,
+        query: ''
       };
     }
 
     componentDidMount() {
         this.performSearch();
     }
-
-    performSearch = (query="mountains%2Clake%2Cboat") =>
+  
+    performSearch = (query="mountain") =>
       fetch(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${query}&per_page=24&format=json&nojsoncallback=1`)
         .then(response => response.json())
         .then(responseData => {
           this.setState({
             pics: responseData.photos.photo,
-            loading: false
+            loading: false,
+            query: query
           });
         })
         .catch(error => {
@@ -31,15 +32,14 @@ export default class Home extends Component {
         })
 
         render() {
-                console.log(this.state.pics)             
+                console.log(this.state.pics)
         return (
             <div>
                 {
                   (this.state.loading)
                    ? <p>Loading...</p>
-                   : <PhotoContainer data={this.state.pics} />
+                   : <PhotoContainer query={this.state.query} data={this.state.pics} />
                 }
             </div>
         )};
     }   
-

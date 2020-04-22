@@ -2,23 +2,23 @@ import React, { Component } from 'react';
 import apiKey from './config';
 import PhotoContainer from './PhotoContainer.js';
 
-
-export default class Home extends Component {
+export default class Lake extends Component {
     
     constructor() {
       super();
       this.state = {
         pics: [],
-        loading: true
+        loading: true,
+        query: ""
       };
     }
 
     componentDidMount() {
         this.performSearch();
     }
-
-    performSearch = (query="mountains%2Clake%2Cboat") =>
-      fetch(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${query}&per_page=24&format=json&nojsoncallback=1`)
+  
+    performSearch = (query="mountain%2Clake%2Cboat") =>
+      fetch(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=lake&per_page=24&format=json&nojsoncallback=1`)
         .then(response => response.json())
         .then(responseData => {
           this.setState({
@@ -31,7 +31,7 @@ export default class Home extends Component {
         })
 
         render() {
-                console.log(this.state.pics)             
+                console.log(this.state.pics)
         return (
             <div>
                 {
@@ -42,4 +42,3 @@ export default class Home extends Component {
             </div>
         )};
     }   
-

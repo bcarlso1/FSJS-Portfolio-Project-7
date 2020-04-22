@@ -6,6 +6,7 @@ import Photo from './Photo';
 const PhotoContainer = props => {
 
     const results = props.data;
+    const title = props.query;
     
     let pics;
     if (results.length > 0) {
@@ -17,7 +18,7 @@ const PhotoContainer = props => {
     
     return (
         <div class="photo-container">
-        <h2>Results</h2>
+        <h2>{title} Results</h2>
         <ul>
           {pics}
         </ul>
