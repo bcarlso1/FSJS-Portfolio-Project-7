@@ -8,7 +8,8 @@ export default class Boat extends Component {
       super();
       this.state = {
         pics: [],
-        loading: true
+        loading: true,
+        query: ""
       };
     }
 
@@ -16,13 +17,14 @@ export default class Boat extends Component {
         this.performSearch();
     }
   
-    performSearch = (query="mountain%2Clake%2Cboat") =>
-      fetch(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=boat&per_page=24&format=json&nojsoncallback=1`)
+    performSearch = (query="boat") =>
+      fetch(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${query}&per_page=24&format=json&nojsoncallback=1`)
         .then(response => response.json())
         .then(responseData => {
           this.setState({
             pics: responseData.photos.photo,
-            loading: false
+            loading: false,
+            query: query
           });
         })
         .catch(error => {
@@ -36,7 +38,7 @@ export default class Boat extends Component {
                 {
                   (this.state.loading)
                    ? <p>Loading...</p>
-                   : <PhotoContainer data={this.state.pics} />
+                   : <PhotoContainer query={this.state.query} data={this.state.pics} />
                 }
             </div>
         )};
