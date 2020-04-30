@@ -1,19 +1,27 @@
-import React from 'react';
+import React, {Component} from 'react';
 import NotFound from './NotFound';
 import Photo from './Photo';
 
 export default class PhotoContainer extends Component {
-      
-    // componentDidUpdate(prevProps) {
-    //     // Typical usage (don't forget to compare props):
-    //     if (this.props.userID !== prevProps.userID) {
-    //       this.fetchData(this.props.userID);
-    //     }
-    //   }
-
-     const results = props.data;
+  
+  componentDidMount() {
+    console.log(this.props.match)
+      }
     
+  
+  // componentDidUpdate(prevProps) {
+  //     if (this.props.changeURL !== prevProps.changeURL) {
+  //         console.log(this.props.changeURL)
+  //       //  this.fetchData(this.props.userID);
+  //       }
+  //     }
+
+      render() {
+    
+     const results = this.props.data;
      let pics;
+      // console.log(this.props.match)
+
       if (results.length > 0) {
         pics = results.map(pic => 
         <Photo 
@@ -27,12 +35,13 @@ export default class PhotoContainer extends Component {
   
       return (
          <div class="photo-container">
-         <h2>{props.title} Results</h2>
+         {/* <h2>{this.props.title} Results</h2> */}
+         {/* <h2>{this.props.match.params.id} Results</h2> */}
          <ul>
             {pics} 
          </ul>
        </div>
       );
+      }
  }
 
-export default PhotoContainer
