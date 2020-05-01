@@ -20,22 +20,18 @@ export default class App extends Component {
                   <Search onSearch={this.performSearch} />
                   <Nav title="Nav" /> 
                   <div>
-                       {/*  {
+                        {
                        (this.state.loading)
                          ? <p>Loading...</p>
-                         :  */}
+                         : 
                     <Switch>
                     <Route exact path="/" render={ (props) => <PhotoContainer {...props} id={props.match.params.id} /> } />
-                    <Route exact path="/:id" render={ () => <PhotoContainer /> } />
-                    {/* <Route path="/mountain" render={ () => <PhotoContainer title="Mountain" data={this.state.pics} changeURL="mountain" /> } /> 
-                    <Route path="/lake" render={ () => <PhotoContainer title="Lake" data={this.state.pics} /> } /> 
-                    <Route path="/boat" render={ () => <PhotoContainer title="Boat" data={this.state.pics} /> } />  */}
-
-                       {/* <Route path="/search/:query" */} 
-                    <Route component={NotFound} /> */}
+                    <Route exact path="/:id" render={ (props) => <PhotoContainer {...props} id={props.match.params.id} /> } />
+                    <Route path="/search/:id" ender={ (props) => <PhotoContainer {...props} id={props.match.params.id} /> } />
+                    <Route component={NotFound} /> 
                     </Switch> 
-                   //   }
-              </div>
+                        }
+                </div>
               </div>
             </BrowserRouter> 
         
