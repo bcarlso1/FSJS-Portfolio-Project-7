@@ -15,13 +15,17 @@ export default class PhotoContainer extends Component {
             };
   }
   componentDidMount() {
-    console.log(this.props);
-    // const { query } = this.props.computedMatch.url
     this.performSearch();
-    
 }
 
-  performSearch = (query="airplane") => 
+componentDidUpdate(prevProps) {
+  if (this.props.id !== prevProps.id) {
+      console.log(this.props.id)
+      this.performSearch();
+    }
+  }
+
+  performSearch = (query=this.props.id) => 
     fetch(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${query}&per_page=24&format=json&nojsoncallback=1`)
      
     .then(response => response.json())
@@ -36,13 +40,7 @@ export default class PhotoContainer extends Component {
        .catch(error => {
           console.log(this.state.pics);
         });
-  
-  // componentDidUpdate(prevProps) {
-  //     if (this.props.changeURL !== prevProps.changeURL) {
-  //         console.log(this.props.changeURL)
-  //       //  this.fetchData(this.props.userID);
-  //       }
-  //     }
+
 
       render() {
     
@@ -64,7 +62,7 @@ export default class PhotoContainer extends Component {
       return (
          <div class="photo-container">
          {/* <h2>{this.props.title} Results</h2> */}
-         <h2>{id} Results</h2>
+         <h2>{this.props.id} Results</h2>
          <ul>
             {pics} 
          </ul>
