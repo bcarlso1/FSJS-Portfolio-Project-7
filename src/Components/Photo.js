@@ -1,5 +1,6 @@
 import React from 'react';
 
+// loads individual photos within container
 
 const Photo = props => (
         <li>

@@ -1,5 +1,6 @@
 import React from 'react';
 
+// shows when no matching route
 
 const PageNotFound = () => {
     return (

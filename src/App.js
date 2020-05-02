@@ -7,18 +7,20 @@ import Nav from './Components/Nav';
 import PhotoContainer from './Components/PhotoContainer';
 import PageNotFound from './Components/PageNotFound';
 
-// FIX SEARCH NOW THAT APP DOESNT lOAD PHOTOS
+// parent component
 export default class App extends Component {
 
         render() {
     
           return (
         
+            // routes and components
+            // spread (...) operator gets access to props object that contains id and match
+            // for search, id is set by the url path
+
            <BrowserRouter>
               <div class="container">
-                  <Search
-                   // {...props} id={"dog"} onSearch={this.performSearch} 
-                   />
+                  <Search />
                   <Nav title="Nav" /> 
                   <div>
                     <Switch>
