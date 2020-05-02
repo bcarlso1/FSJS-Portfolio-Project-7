@@ -9,11 +9,9 @@ export default class PhotoContainer extends Component {
     super();
     this.state = {
        pics: [],
-      // loading: true,
-       title: "",
-       changeURL: ""
+       loading: true
             };
-  }
+    }
   componentDidMount() {
     this.performSearch();
 }
@@ -33,14 +31,12 @@ componentDidUpdate(prevProps) {
             
         this.setState({ 
                 pics: responseData.photos.photo,
-                loading: false,
-                title: "",
+                loading: false
             })
           })
        .catch(error => {
           console.log(this.state.pics);
         });
-
 
       render() {
     
@@ -61,11 +57,17 @@ componentDidUpdate(prevProps) {
   
       return (
          <div class="photo-container">
-         {/* <h2>{this.props.title} Results</h2> */}
          <h2>{this.props.id} Results</h2>
-         <ul>
-            {pics} 
-         </ul>
+         <div>
+            {
+              (this.state.loading)
+                ? <p>Loading...</p>
+                : 
+                <ul>
+                {pics} 
+                </ul>
+            }
+         </div>
        </div>
       );
       }
