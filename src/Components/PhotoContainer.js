@@ -22,7 +22,10 @@ export default class PhotoContainer extends Component {
 // if there is a new "id", run the search again
 componentDidUpdate(prevProps) {
   if (this.props.id !== prevProps.id) {
-      console.log(this.props.id)
+      console.log(this.props.id);
+      this.setState({ 
+        loading: true
+    })
       this.performSearch();
     }
   }
@@ -64,7 +67,7 @@ componentDidUpdate(prevProps) {
       // loads title from id
       // says loading if true, show pics if false
       return (
-         <div class="photo-container">
+         <div className="photo-container">
          <h2>{this.props.id} Results</h2>
          <div>
             {

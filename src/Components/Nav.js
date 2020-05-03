@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom';
 
 const Nav = (props) => {
       return (
-      <nav class="main-nav">
+      <nav className="main-nav">
         <ul>
           <li><NavLink to='/mountain' >Mountain</NavLink></li>
           <li><NavLink to='/lake' >Lake</NavLink></li>

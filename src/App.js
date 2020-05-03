@@ -19,7 +19,7 @@ export default class App extends Component {
             // for search, id is set by the url path
 
            <BrowserRouter>
-              <div class="container">
+              <div className="container">
                   <Search />
                   <Nav title="Nav" /> 
                   <div>
